@@ -1,0 +1,95 @@
+{%extends 'base/base.html'%}
+
+{%block title%}{{title_complete|title}}{%endblock%}
+{%block content%}
+<section class="content">
+  <div class="container-fluid lista">
+  
+    {% include 'base/title_header.html' %}
+    
+    {% include 'base/msg_sucesso.html' %}
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lista-content">
+      <div class="card">
+        <form action="" method="post">
+          {% csrf_token %}
+          <div class="header">
+            <h2>
+              {{title_complete}}
+            </h2>
+              <div class="header-btn">
+                <a href="{{add_url}}" class="btn btn-success"><i class="material-icons">&#xE148;</i><span> ADICIONAR</span></a>
+                <button class="btn btn-red btn-remove"><i class="material-icons">&#xE872;</i></button>
+              </div>
+          </div>
+
+          <div class="body">
+
+           {% include 'base/search.html' %}
+
+           <div class="table-responsive">
+            <table id="lista-database" class="table table-bordered table-striped lista-table">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Fornecedor</th>
+                  <th>Descrição</th>
+                    <th>Transmissora</th>
+                    <th>Contrato</th>
+                    <th>Nota fiscal</th>
+                    <th>Código</th>
+                    <th>Quantidade fornecida</th>
+                    <th>Local entrega</th>
+                    <th>Quantidade entrega</th>
+                    <th>Data entrada</th>
+                    <th>Quantidade saida</th>
+                    <th>Data saida</th>
+                    <th>Saldo</th>
+                    <th>Observações</th>
+                    <th>Remover</th>
+                </tr>
+              </thead>
+
+              <tbody>
+               {% if all_produtos%}
+               {% for produto in all_produtos %}
+               <tr class="clickable-row" data-href="{% url 'Cadastro:editarprodutoview' produto.id %}">
+                <td>{%if produto.item%}{{produto.item}}{%else%} {%endif%}</td>
+                <td>{%if produto.fornecedor%}{{produto.fornecedor}}{%else%} {%endif%}</td>
+                <td>{%if produto.descricao%}{{produto.descricao}}{%else%} {%endif%}</td>
+                   <td>{%if produto.trnasmissora%}{{produto.transmissora}}{%else%} {%endif%}</td>
+                   <td>{%if produto.contrato%}{{produto.contrato}}{%else%} {%endif%}</td>
+                   <td>{%if produto.nota_fiscal%}{{produto.nota_fiscal}}{%else%} {%endif%}</td>
+                   <td>{%if produto.codigo%}{{produto.codigo}}{%else%} {%endif%}</td>
+                   <td>{%if produto.qtn_fornecida%}{{produto.qtn_fornecida}}{%else%} {%endif%}</td>
+                   <td>{%if produto.local_entrega%}{{produto.local_entrega}}{%else%} {%endif%}</td>
+                   <td>{%if produto.qtn_entrega%}{{produto.qtn_entrega}}{%else%} {%endif%}</td>
+                   <td>{%if produto.data_entrega%}{{produto.data_entrada}}{%else%} {%endif%}</td>
+                   <td>{%if produto.qtn_saida%}{{produto.qtn_saida}}{%else%} {%endif%}</td>
+                   <td>{%if produto.data_saida%}{{produto.data_saida}}{%else%} {%endif%}</td>
+                   <td>{%if produto.saldo%}{{produto.saldo}}{%else%} {%endif%}</td>
+                   <td>{%if produto.observacoes%}{{produto.observacoes}}{%else%} {%endif%}</td>
+                <td class="lista-remove">
+                  <input type="checkbox" name="{{produto.id}}" id="remover-entrada-{{produto.id}}"/>
+                  <label class="remove-entry-label" for="remover-entrada-{{produto.id}}"></label>
+                </td>
+              </tr>
+              {% endfor %}
+              {%else%}
+              {%endif%}
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+</div>
+</section>
+
+
+{%endblock%}

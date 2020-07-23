@@ -1,0 +1,46 @@
+{%extends 'base/base.html'%}
+
+{%block title%}Página Inicial{%endblock%}
+{%block content%}
+<section class="content">
+  <div class="container-fluid">
+   <div class="block-header">
+    <h2>INFORMAÇÕES</h2>
+    <small>Informações do sistema para o dia {{data_atual}}.</small>
+  </div>
+  <div class="row clearfix">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+      <div class="card inicial-card">
+       <div class="header">
+         <h2><i class="material-icons">&#xE85D;</i>CADASTRO</h2>
+         <div>
+           <small>N° de itens adicionados a base de dados</small>
+         </div>
+       </div>
+       <div class="body">
+         <table class="table table-hover">
+           <tbody>
+            {% if perms.cadastro.view_produto %}
+            <tr>
+              <td> 
+                <a href="{% url 'Cadastro:listaprodutosview' %}">
+                  <div style="height:100%;width:100%;">
+                    <b>{{quantidade_cadastro.produtos}}</b> Materiais cadastrados
+                  </div>
+                </a>              
+              </td>
+            </tr> 
+            {% endif %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>
+</section>
+
+
+{%endblock%}
