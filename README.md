@@ -27,7 +27,7 @@
     python manage.py createsuperuser
     ```
 
-6. Teste a instalação carregando o servidor de desenvolvimento (http://localhost:8000 no navegador):
+6. Teste a instalação carregando o servidor de desenvolvimento (http://localhost:8000 no navegador)
 
     ```bash
     python manage.py runserver
